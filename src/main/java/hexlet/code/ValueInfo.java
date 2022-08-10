@@ -2,7 +2,7 @@ package hexlet.code;
 
 import hexlet.code.serivces.Status;
 
-public class ValueInfo<T> {
+public final class ValueInfo<T> {
 
     private final T oldValue;
     private final T newValue;

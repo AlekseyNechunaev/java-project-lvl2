@@ -15,3 +15,5 @@ run-dist:
 
 run:
 	./gradlew run
+
+.PHONY: build
