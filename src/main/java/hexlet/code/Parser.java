@@ -3,6 +3,7 @@ package hexlet.code;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.util.Map;
 
@@ -13,16 +14,16 @@ public class Parser {
     }
 
     private static Map<String, Object> parse(String content) {
-        Map<String, Object> result = null;
-        if (content.startsWith("{")) {
-            result = jsonParse(content);
+        if (content.isEmpty()) {
+            throw new RuntimeException("There is no content in the file");
         }
-        return result;
-    }
-
-    private static Map<String, Object> jsonParse(String content) {
         Map<String, Object> result;
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper;
+        if (content.startsWith("{")) {
+            objectMapper = new ObjectMapper();
+        } else {
+            objectMapper = new ObjectMapper(new YAMLFactory());
+        }
         try {
             result = objectMapper.readValue(content, new TypeReference<>() {
             });
