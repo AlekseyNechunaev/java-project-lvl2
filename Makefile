@@ -16,4 +16,10 @@ run-dist:
 run:
 	./gradlew run
 
+report:
+	./gradlew jacocoTestReport
+
+lint:
+	./gradlew checkstyleMain checkstyleTest
+
 .PHONY: build

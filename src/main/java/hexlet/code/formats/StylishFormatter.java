@@ -7,6 +7,9 @@ import java.util.Map;
 public class StylishFormatter {
 
     public static String doffToStylish(Map<String, ValueInfo<Object>> diff) {
+        if (diff.isEmpty()) {
+            return null;
+        }
         StringBuilder resultStylish = new StringBuilder();
         resultStylish.append("{\n");
         for (Map.Entry<String, ValueInfo<Object>> entry : diff.entrySet()) {
