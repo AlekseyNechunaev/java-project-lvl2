@@ -43,7 +43,8 @@ public class DifferTest {
     void testWhereFileFormatIsNotEqualToJson() {
         var pathToFirstFile = "src/test/resources/first.jsons";
         var pathToSecondFile = "src/test/resources/first.json";
-        assertThatThrownBy(() -> Differ.generate(pathToFirstFile, pathToSecondFile)).isInstanceOf(RuntimeException.class)
+        assertThatThrownBy(() -> Differ.generate(pathToFirstFile, pathToSecondFile))
+                .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("incorrect file format");
     }
 
