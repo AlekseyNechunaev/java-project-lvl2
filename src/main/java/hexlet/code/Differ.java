@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.formats.StylishFormatter;
 import hexlet.code.serivces.Status;
 
 import java.io.IOException;
@@ -11,13 +10,13 @@ import java.util.*;
 
 public class Differ {
 
-    public static String generate(String pathToFirstFile, String pathToSecondFile) {
+    public static String generate(String pathToFirstFile, String pathToSecondFile, String format) {
         String contentInFirstFile = readFile(pathToFirstFile);
         String contentInSecondFile = readFile(pathToSecondFile);
         Map<String, Object> mapFirstFileContent = Parser.getData(contentInFirstFile);
         Map<String, Object> mapSecondFileContent = Parser.getData(contentInSecondFile);
         Map<String, ValueInfo<Object>> diffMap = genDiff(mapFirstFileContent, mapSecondFileContent);
-        return StylishFormatter.doffToStylish(diffMap);
+        return Formatter.toFormat(diffMap, format);
     }
 
     private static String readFile(String pathToFile) {

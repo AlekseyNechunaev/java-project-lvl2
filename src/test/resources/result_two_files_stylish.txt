@@ -1,0 +1,13 @@
+{
+  - default: [value1, value2]
+  - follow: false
+    host: hexlet.io
+  - id: null
+  - numbers1: [1, 2, 3, 4]
+  - obj1: {nestedKey=value, isNested=true}
+  + obj1: {nestedKey=value, isNested=false}
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
