@@ -24,7 +24,7 @@ public class Differ {
     }
 
     private static String readFile(String pathToFile) {
-        if (!pathToFile.endsWith(".json") && !pathToFile.endsWith(".yaml")) {
+        if (!pathToFile.endsWith(".json") && !pathToFile.endsWith(".yaml") && !pathToFile.endsWith(".yml")) {
             throw new RuntimeException("incorrect file format");
         }
         Path fullPath = Paths.get(pathToFile);
