@@ -9,9 +9,8 @@ import java.util.Map;
 public class JsonFormatter {
 
     public static String diffToJson(Map<String, ValueInfo<Object>> diff) {
-        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.writeValueAsString(diff);
+            return new ObjectMapper().writeValueAsString(diff);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

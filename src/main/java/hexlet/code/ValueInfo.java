@@ -9,6 +9,7 @@ public final class ValueInfo<T> {
     private final Status status;
 
     // Оставил параметры конструктора такими (не разобрался как отключить ворнинг на проверку HiddenField)
+    // Ворнинг получилось приглушить только локально
     public ValueInfo(T oldVal, T newVal, Status stat) {
         this.oldValue = oldVal;
         this.newValue = newVal;
