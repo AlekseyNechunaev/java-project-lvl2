@@ -8,10 +8,11 @@ public final class ValueInfo<T> {
     private final T newValue;
     private final Status status;
 
-    public ValueInfo(T oldValue, T newValue, Status status) {
-        this.oldValue = oldValue;
-        this.newValue = newValue;
-        this.status = status;
+    // Оставил параметры конструктора такими (не разобрался как отключить ворнинг на проверку HiddenField)
+    public ValueInfo(T oldVal, T newVal, Status stat) {
+        this.oldValue = oldVal;
+        this.newValue = newVal;
+        this.status = stat;
     }
 
     public T getOldValue() {
