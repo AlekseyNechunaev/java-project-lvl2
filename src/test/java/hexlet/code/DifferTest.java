@@ -52,7 +52,7 @@ public class DifferTest {
     void differTestWhereFirstJsonAndSecondYamlStylish() throws IOException {
         var pathToFirstFile = "src/test/resources/first.yaml";
         var pathToSecondFile = "src/test/resources/second.json";
-        String result = Differ.generate(pathToFirstFile, pathToSecondFile, "stylish");
+        String result = Differ.generate(pathToFirstFile, pathToSecondFile);
         String exceptedResult = Files.readString(RESULT_FILES_STYLISH);
         assertThat(result).isEqualTo(exceptedResult);
     }
@@ -61,7 +61,7 @@ public class DifferTest {
     void differTestWhereBothFilesYamlFormatStylish() throws IOException {
         var pathToFirstFile = "src/test/resources/first.yaml";
         var pathToSecondFile = "src/test/resources/second.yaml";
-        String result = Differ.generate(pathToFirstFile, pathToSecondFile, "stylish");
+        String result = Differ.generate(pathToFirstFile, pathToSecondFile);
         String exceptedResult = Files.readString(RESULT_FILES_STYLISH);
         assertThat(result).isEqualTo(exceptedResult);
     }
@@ -88,9 +88,7 @@ public class DifferTest {
     void differTestUnknownFormat() {
         var pathToFirstFile = "src/test/resources/first.json";
         var pathToSecondFile = "src/test/resources/second.yaml";
-        assertThatThrownBy(() -> {
-            Differ.generate(pathToFirstFile, pathToSecondFile, "unknown");
-        }).isInstanceOf(RuntimeException.class)
+        assertThatThrownBy(() -> Differ.generate(pathToFirstFile, pathToSecondFile, "unknown")).isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("unknown format");
     }
 }

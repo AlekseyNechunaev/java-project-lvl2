@@ -19,6 +19,10 @@ public class Differ {
         return Formatter.toFormat(diffMap, format);
     }
 
+    public static String generate(String pathToFirstFile, String pathToSecondFile) {
+        return generate(pathToFirstFile, pathToSecondFile, "stylish");
+    }
+
     private static String readFile(String pathToFile) {
         if (!pathToFile.endsWith(".json") && !pathToFile.endsWith(".yaml")) {
             throw new RuntimeException("incorrect file format");
