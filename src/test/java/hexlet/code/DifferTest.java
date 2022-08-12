@@ -32,8 +32,8 @@ public class DifferTest {
         assertThatThrownBy(() -> Differ.generate(pathToFirstFileJson, pathToSecondFileJson, "stylish"))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("incorrect file format");
-        var pathToFirstFileYaml = "src/test/resources/first.yaml";
-        var pathToSecondFileYaml = "src/test/resources/first.yml";
+        var pathToFirstFileYaml = "src/test/resources/first.ymla";
+        var pathToSecondFileYaml = "src/test/resources/first.yaml";
         assertThatThrownBy(() -> Differ.generate(pathToFirstFileYaml, pathToSecondFileYaml, "stylish"))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("incorrect file format");
@@ -88,7 +88,8 @@ public class DifferTest {
     void differTestUnknownFormat() {
         var pathToFirstFile = "src/test/resources/first.json";
         var pathToSecondFile = "src/test/resources/second.yaml";
-        assertThatThrownBy(() -> Differ.generate(pathToFirstFile, pathToSecondFile, "unknown")).isInstanceOf(RuntimeException.class)
+        assertThatThrownBy(() -> Differ.generate(pathToFirstFile, pathToSecondFile, "unknown"))
+                .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("unknown format");
     }
 }
