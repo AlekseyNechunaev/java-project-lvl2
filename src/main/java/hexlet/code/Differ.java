@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Differ {
 
@@ -43,7 +40,7 @@ public class Differ {
         allKeys.addAll(secondMap.keySet());
         allKeys.forEach(key -> {
             if (firstMap.containsKey(key) && secondMap.containsKey(key)) {
-                if (!firstMap.get(key).equals(secondMap.get(key))) {
+                if (!Objects.equals(firstMap.get(key), secondMap.get(key))) {
                     resultDiff.put(key, new ValueInfo<>(firstMap.get(key), secondMap.get(key), Status.CHANGED));
                 } else {
                     resultDiff.put(key, new ValueInfo<>(firstMap.get(key), secondMap.get(key), Status.UNCHANGED));

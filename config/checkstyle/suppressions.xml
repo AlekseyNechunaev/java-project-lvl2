@@ -9,4 +9,6 @@
               files="App.java"/>
     <suppress checks="HiddenField"
               files=".*.java"/>
+    <suppress checks="AvoidStarImport"
+              files="Differ.java"/>
 </suppressions>

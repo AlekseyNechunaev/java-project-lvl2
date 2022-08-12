@@ -2,3 +2,9 @@
 "timeout": 50
 "proxy": "123.234.53.22"
 "follow": false
+"default": ["value1", "value2"]
+"numbers1": [1, 2, 3, 4]
+"id": null
+"obj1":
+    "nestedKey": "value"
+    "isNested": true

@@ -7,36 +7,46 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DifferTest {
 
+    private static final String EXCEPTED_RESULT_TWO_FILES = """
+            {
+              - default: [value1, value2]
+              - follow: false
+                host: hexlet.io
+              - id: null
+              - numbers1: [1, 2, 3, 4]
+              - obj1: {nestedKey=value, isNested=true}
+              + obj1: {nestedKey=value, isNested=false}
+              - proxy: 123.234.53.22
+              - timeout: 50
+              + timeout: 20
+              + verbose: true
+            }""";
+
     @Test
-    void differTestBothFileJsonFormat() {
+    void differTestBothFileJsonStylish() {
         var pathToFirstFile = "src/test/resources/first.json";
         var pathToSecondFile = "src/test/resources/second.json";
         String result = Differ.generate(pathToFirstFile, pathToSecondFile);
-        String exceptedResult = """
-                {
-                - follow: false
-                  host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
-                + timeout: 20
-                + verbose: true
-                }""";
-        assertThat(result).isEqualTo(exceptedResult);
+        assertThat(result).isEqualTo(EXCEPTED_RESULT_TWO_FILES);
     }
 
     @Test
-    void differTestBothJsonFilesAreTheSame() {
+    void differTestBothJsonFilesAreTheSameStylish() {
         var pathToFirstFile = "src/test/resources/first.json";
         var pathToSecondFile = "src/test/resources/first.json";
-        String exceptedResult = """
+        String exceptedResultSame = """
                 {
-                  follow: false
-                  host: hexlet.io
-                  proxy: 123.234.53.22
-                  timeout: 50
+                    default: [value1, value2]
+                    follow: false
+                    host: hexlet.io
+                    id: null
+                    numbers1: [1, 2, 3, 4]
+                    obj1: {nestedKey=value, isNested=true}
+                    proxy: 123.234.53.22
+                    timeout: 50
                 }""";
         String result = Differ.generate(pathToFirstFile, pathToSecondFile);
-        assertThat(result).isEqualTo(exceptedResult);
+        assertThat(result).isEqualTo(exceptedResultSame);
     }
 
     @Test
@@ -63,36 +73,18 @@ public class DifferTest {
     }
 
     @Test
-    void differTestWhereFirstJsonAndSecondYaml() {
+    void differTestWhereFirstJsonAndSecondYamlStylish() {
         var pathToFirstFile = "src/test/resources/first.yaml";
         var pathToSecondFile = "src/test/resources/second.json";
         String result = Differ.generate(pathToFirstFile, pathToSecondFile);
-        String exceptedResult = """
-                {
-                - follow: false
-                  host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
-                + timeout: 20
-                + verbose: true
-                }""";
-        assertThat(result).isEqualTo(exceptedResult);
+        assertThat(result).isEqualTo(EXCEPTED_RESULT_TWO_FILES);
     }
 
     @Test
-    void differTestWhereBothFilesYamlFormat() {
+    void differTestWhereBothFilesYamlFormatStylish() {
         var pathToFirstFile = "src/test/resources/first.yaml";
         var pathToSecondFile = "src/test/resources/second.yaml";
         String result = Differ.generate(pathToFirstFile, pathToSecondFile);
-        String exceptedResult = """
-                {
-                - follow: false
-                  host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
-                + timeout: 20
-                + verbose: true
-                }""";
-        assertThat(result).isEqualTo(exceptedResult);
+        assertThat(result).isEqualTo(EXCEPTED_RESULT_TWO_FILES);
     }
 }

@@ -15,21 +15,24 @@ public class StylishFormatter {
         for (Map.Entry<String, ValueInfo<Object>> entry : diff.entrySet()) {
             ValueInfo<Object> valueInfo = entry.getValue();
             switch (valueInfo.getStatus()) {
-                case DELETED ->
-                        resultStylish.append("- ").append(entry.getKey()).append(": ").append(valueInfo.getOldValue())
-                                .append("\n");
-                case ADDED ->
-                        resultStylish.append("+ ").append(entry.getKey()).append(": ").append(valueInfo.getNewValue())
-                                .append("\n");
+                case DELETED -> resultStylish.append(" ".repeat(2)).append("- ").append(entry.getKey())
+                        .append(": ")
+                        .append(valueInfo.getOldValue())
+                        .append("\n");
+                case ADDED -> resultStylish.append(" ".repeat(2)).append("+ ").append(entry.getKey()).append(": ")
+                        .append(valueInfo.getNewValue())
+                        .append("\n");
                 case CHANGED -> {
-                    resultStylish.append("- ").append(entry.getKey()).append(": ").append(valueInfo.getOldValue())
+                    resultStylish.append(" ".repeat(2)).append("- ").append(entry.getKey()).append(": ")
+                            .append(valueInfo.getOldValue())
                             .append("\n");
-                    resultStylish.append("+ ").append(entry.getKey()).append(": ").append(valueInfo.getNewValue())
+                    resultStylish.append(" ".repeat(2)).append("+ ").append(entry.getKey()).append(": ")
+                            .append(valueInfo.getNewValue())
                             .append("\n");
                 }
-                default ->
-                        resultStylish.append("  ").append(entry.getKey()).append(": ").append(valueInfo.getOldValue())
-                                .append("\n");
+                default -> resultStylish.append(" ".repeat(2)).append("  ").append(entry.getKey()).append(": ")
+                        .append(valueInfo.getOldValue())
+                        .append("\n");
             }
         }
         resultStylish.append("}");
