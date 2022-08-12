@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import hexlet.code.serivces.Status;
+import hexlet.code.serivces.ValueInfo;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,9 +18,9 @@ public class Differ {
     public static String generate(String pathToFirstFile, String pathToSecondFile, String format) {
         String contentInFirstFile = readFile(pathToFirstFile);
         String contentInSecondFile = readFile(pathToSecondFile);
-        Map<String, Object> mapFirstFileContent = Parser.getData(contentInFirstFile);
-        Map<String, Object> mapSecondFileContent = Parser.getData(contentInSecondFile);
-        Map<String, ValueInfo<Object>> diffMap = genDiff(mapFirstFileContent, mapSecondFileContent);
+        Map<String, Object> mapFirstFileContent = Parser.parse(contentInFirstFile);
+        Map<String, Object> mapSecondFileContent = Parser.parse(contentInSecondFile);
+        Map<String, ValueInfo> diffMap = genDiff(mapFirstFileContent, mapSecondFileContent);
         return Formatter.toFormat(diffMap, format);
     }
 
@@ -41,22 +42,22 @@ public class Differ {
         return contentFile;
     }
 
-    private static Map<String, ValueInfo<Object>> genDiff(Map<String, Object> firstMap, Map<String, Object> secondMap) {
-        Map<String, ValueInfo<Object>> resultDiff = new TreeMap<>();
+    private static Map<String, ValueInfo> genDiff(Map<String, Object> firstMap, Map<String, Object> secondMap) {
+        Map<String, ValueInfo> resultDiff = new TreeMap<>();
         Set<String> allKeys = new HashSet<>(firstMap.keySet());
         allKeys.addAll(secondMap.keySet());
         allKeys.forEach(key -> {
             if (firstMap.containsKey(key) && secondMap.containsKey(key)) {
                 if (!Objects.equals(firstMap.get(key), secondMap.get(key))) {
-                    resultDiff.put(key, new ValueInfo<>(firstMap.get(key), secondMap.get(key), Status.CHANGED));
+                    resultDiff.put(key, new ValueInfo(firstMap.get(key), secondMap.get(key), Status.CHANGED));
                 } else {
-                    resultDiff.put(key, new ValueInfo<>(firstMap.get(key), secondMap.get(key), Status.UNCHANGED));
+                    resultDiff.put(key, new ValueInfo(firstMap.get(key), secondMap.get(key), Status.UNCHANGED));
                 }
             } else {
                 if (firstMap.containsKey(key) && !secondMap.containsKey(key)) {
-                    resultDiff.put(key, new ValueInfo<>(firstMap.get(key), null, Status.DELETED));
+                    resultDiff.put(key, new ValueInfo(firstMap.get(key), null, Status.DELETED));
                 } else {
-                    resultDiff.put(key, new ValueInfo<>(null, secondMap.get(key), Status.ADDED));
+                    resultDiff.put(key, new ValueInfo(null, secondMap.get(key), Status.ADDED));
                 }
             }
         });

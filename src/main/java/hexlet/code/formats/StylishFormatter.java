@@ -1,16 +1,16 @@
 package hexlet.code.formats;
 
-import hexlet.code.ValueInfo;
+import hexlet.code.serivces.ValueInfo;
 
 import java.util.Map;
 
 public class StylishFormatter {
 
-    public static String diffToStylish(Map<String, ValueInfo<Object>> diff) {
+    public static String diffToStylish(Map<String, ValueInfo> diff) {
         StringBuilder resultStylish = new StringBuilder();
         resultStylish.append("{\n");
-        for (Map.Entry<String, ValueInfo<Object>> entry : diff.entrySet()) {
-            ValueInfo<Object> valueInfo = entry.getValue();
+        for (Map.Entry<String, ValueInfo> entry : diff.entrySet()) {
+            ValueInfo valueInfo = entry.getValue();
             switch (valueInfo.getStatus()) {
                 case DELETED -> resultStylish.append(" ".repeat(2)).append("- ").append(entry.getKey())
                         .append(": ")

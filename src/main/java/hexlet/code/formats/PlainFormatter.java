@@ -1,6 +1,6 @@
 package hexlet.code.formats;
 
-import hexlet.code.ValueInfo;
+import hexlet.code.serivces.ValueInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -9,10 +9,10 @@ import static hexlet.code.serivces.Status.UNCHANGED;
 
 public class PlainFormatter {
 
-    public static String diffToPlain(Map<String, ValueInfo<Object>> diff) {
+    public static String diffToPlain(Map<String, ValueInfo> diff) {
         StringBuilder resultStylish = new StringBuilder();
-        for (Map.Entry<String, ValueInfo<Object>> entry : diff.entrySet()) {
-            ValueInfo<Object> valueInfo = entry.getValue();
+        for (Map.Entry<String, ValueInfo> entry : diff.entrySet()) {
+            ValueInfo valueInfo = entry.getValue();
             if (!valueInfo.getStatus().equals(UNCHANGED)) {
                 String oldValue = normalizeValueToPlainStyle(valueInfo.getOldValue());
                 String newValue = normalizeValueToPlainStyle(valueInfo.getNewValue());

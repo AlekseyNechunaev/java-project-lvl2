@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.formats.JsonFormatter;
 import hexlet.code.formats.PlainFormatter;
 import hexlet.code.formats.StylishFormatter;
+import hexlet.code.serivces.ValueInfo;
 
 import java.util.Map;
 
@@ -12,7 +13,7 @@ public class Formatter {
     private static final String PLAIN = "plain";
     private static final String JSON = "json";
 
-    public static String toFormat(Map<String, ValueInfo<Object>> diff, String format) {
+    public static String toFormat(Map<String, ValueInfo> diff, String format) {
         switch (format.toLowerCase()) {
             case STYLISH -> {
                 return StylishFormatter.diffToStylish(diff);

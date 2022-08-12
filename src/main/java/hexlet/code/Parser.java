@@ -9,11 +9,7 @@ import java.util.Map;
 
 public class Parser {
 
-    public static Map<String, Object> getData(String content) {
-        return parse(content);
-    }
-
-    private static Map<String, Object> parse(String content) {
+    public static Map<String, Object> parse(String content) {
         if (content.isEmpty()) {
             throw new RuntimeException("There is no content in the file");
         }
