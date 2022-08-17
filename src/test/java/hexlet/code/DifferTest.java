@@ -31,12 +31,12 @@ public class DifferTest {
         var pathToSecondFileJson = "src/test/resources/first.json";
         assertThatThrownBy(() -> Differ.generate(pathToFirstFileJson, pathToSecondFileJson, "stylish"))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("incorrect file format");
+                .hasMessageContaining("incorrect format");
         var pathToFirstFileYaml = "src/test/resources/first.ymla";
         var pathToSecondFileYaml = "src/test/resources/first.yaml";
         assertThatThrownBy(() -> Differ.generate(pathToFirstFileYaml, pathToSecondFileYaml, "stylish"))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("incorrect file format");
+                .hasMessageContaining("incorrect format");
     }
 
     @Test
