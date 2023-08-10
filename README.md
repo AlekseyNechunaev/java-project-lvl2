@@ -7,3 +7,5 @@
 [![asciicast](https://asciinema.org/a/aX5H8hvffMGo0ppsGUaEB5DSc.svg)](https://asciinema.org/a/aX5H8hvffMGo0ppsGUaEB5DSc)
 [![asciicast](https://asciinema.org/a/CvsjhQiIU0z2j6QIfmt1mNjfD.svg)](https://asciinema.org/a/CvsjhQiIU0z2j6QIfmt1mNjfD)
 [![asciicast](https://asciinema.org/a/4edJE3xLovnjcRtFQ1O2hSZkT.svg)](https://asciinema.org/a/4edJE3xLovnjcRtFQ1O2hSZkT)
+
+Консольная утилита для формирования диффа между значениями ключей двух файлов. Поддерживает входные форматы файлов json, yaml, yml. Также поддерживает три формата вывода результата stylish, json, plain (если формат не передан, по дефолту вывод происходит в формате stylish). Примеры вывода можно посмотреть в видео выше
