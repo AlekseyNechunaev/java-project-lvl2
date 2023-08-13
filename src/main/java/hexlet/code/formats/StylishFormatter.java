@@ -4,33 +4,31 @@ import hexlet.code.serivces.ValueInfo;
 
 import java.util.Map;
 
-public class StylishFormatter {
+public class StylishFormatter implements Formatter {
 
-    public static String diffToStylish(Map<String, ValueInfo> diff) {
+    @Override
+    public String toFormat(Map<String, ValueInfo> diff) {
         StringBuilder resultStylish = new StringBuilder();
-        resultStylish.append("{\n");
+        resultStylish.append("{").append(LINE_SEPARATOR);
         for (Map.Entry<String, ValueInfo> entry : diff.entrySet()) {
             ValueInfo valueInfo = entry.getValue();
             switch (valueInfo.getStatus()) {
                 case DELETED -> resultStylish.append(" ".repeat(2)).append("- ").append(entry.getKey())
                         .append(": ")
-                        .append(valueInfo.getOldValue())
-                        .append("\n");
+                        .append(valueInfo.getOldValue());
                 case ADDED -> resultStylish.append(" ".repeat(2)).append("+ ").append(entry.getKey()).append(": ")
-                        .append(valueInfo.getNewValue())
-                        .append("\n");
+                        .append(valueInfo.getNewValue());
                 case CHANGED -> {
                     resultStylish.append(" ".repeat(2)).append("- ").append(entry.getKey()).append(": ")
                             .append(valueInfo.getOldValue())
-                            .append("\n");
+                                    .append(LINE_SEPARATOR);
                     resultStylish.append(" ".repeat(2)).append("+ ").append(entry.getKey()).append(": ")
-                            .append(valueInfo.getNewValue())
-                            .append("\n");
+                            .append(valueInfo.getNewValue());
                 }
                 default -> resultStylish.append(" ".repeat(2)).append("  ").append(entry.getKey()).append(": ")
-                        .append(valueInfo.getOldValue())
-                        .append("\n");
+                        .append(valueInfo.getOldValue());
             }
+            resultStylish.append(LINE_SEPARATOR);
         }
         resultStylish.append("}");
         return resultStylish.toString();

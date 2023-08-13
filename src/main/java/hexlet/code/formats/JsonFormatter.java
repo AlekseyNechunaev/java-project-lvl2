@@ -6,11 +6,13 @@ import hexlet.code.serivces.ValueInfo;
 
 import java.util.Map;
 
-public class JsonFormatter {
+public class JsonFormatter implements Formatter {
 
-    public static String diffToJson(Map<String, ValueInfo> diff) {
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+    @Override
+    public String toFormat(Map<String, ValueInfo> diff) {
         try {
-            return new ObjectMapper().writeValueAsString(diff);
+            return MAPPER.writeValueAsString(diff);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
